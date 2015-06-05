@@ -25,10 +25,10 @@ cookbook_file "/etc/sensu/handlers/pagerduty.rb" do
 end
 
 sensu_snippet "pagerduty" do
-  content(:api_key => node["monitor"]["pagerduty_api_key"])
+  content(:api_key => node["undef-sensu"]["pagerduty_api_key"])
 end
 
-include_recipe "monitor::_filters"
+include_recipe "undef-sensu::_filters"
 
 sensu_handler "pagerduty" do
   type "pipe"

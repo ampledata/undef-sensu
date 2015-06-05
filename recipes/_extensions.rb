@@ -21,7 +21,7 @@
   client
   server
 ].each do |service|
-  extension_dir = node["monitor"]["#{service}_extension_dir"]
+  extension_dir = node["undef-sensu"]["#{service}_extension_dir"]
 
   directory extension_dir do
     recursive true

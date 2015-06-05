@@ -18,18 +18,18 @@
 # limitations under the License.
 #
 
-ip_type = node["monitor"]["use_local_ipv4"] ? "local_ipv4" : "public_ipv4"
-master_address = node["monitor"]["master_address"]
+ip_type = node["undef-sensu"]["use_local_ipv4"] ? "local_ipv4" : "public_ipv4"
+master_address = node["undef-sensu"]["master_address"]
 
 case
 when Chef::Config[:solo]
   master_address ||= "localhost"
 when master_address.nil?
-  if node["recipes"].include?("monitor::master")
+  if node["recipes"].include?("undef-sensu::master")
     master_address = "localhost"
   else
     master_node = case
-    when node["monitor"]["environment_aware_search"]
+    when node["undef-sensu"]["environment_aware_search"]
       search(:node, "chef_environment:#{node.chef_environment} AND recipes:monitor\\:\\:master").first
     else
       search(:node, "recipes:monitor\\:\\:master").first

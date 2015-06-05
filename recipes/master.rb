@@ -20,9 +20,9 @@
 include_recipe "sensu::rabbitmq"
 include_recipe "sensu::redis"
 
-include_recipe "monitor::_worker"
+include_recipe "undef-sensu::_worker"
 
 include_recipe "sensu::api_service"
 include_recipe "uchiwa"
 
-include_recipe "monitor::default"
+include_recipe "undef-sensu::default"

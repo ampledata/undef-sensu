@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe "monitor::default"
+include_recipe "undef-sensu::default"
 
 sensu_gem "haproxy"
 
@@ -28,7 +28,7 @@ cookbook_file plugin_path do
   mode 0755
 end
 
-node.override["monitor"]["sudo_commands"] =
-  node["monitor"]["sudo_commands"] + [plugin_path]
+node.override["undef-sensu"]["sudo_commands"] =
+  node["undef-sensu"]["sudo_commands"] + [plugin_path]
 
-include_recipe "monitor::_sudo"
+include_recipe "undef-sensu::_sudo"

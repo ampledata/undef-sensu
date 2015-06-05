@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe "monitor::default"
+include_recipe "undef-sensu::default"
 
 sensu_gem "carrot-top"
 

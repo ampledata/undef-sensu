@@ -22,7 +22,7 @@ include_recipe "sudo"
 sudo "sensu" do
   user "sensu"
   runas "root"
-  commands node["monitor"]["sudo_commands"]
+  commands node["undef-sensu"]["sudo_commands"]
   host "ALL"
   nopasswd true
 end

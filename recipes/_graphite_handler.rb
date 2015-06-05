@@ -17,10 +17,10 @@
 # limitations under the License.
 #
 
-graphite_address = node["monitor"]["graphite_address"]
-graphite_port = node["monitor"]["graphite_port"]
+graphite_address = node["undef-sensu"]["graphite_address"]
+graphite_port = node["undef-sensu"]["graphite_port"]
 
-ip_type = node["monitor"]["use_local_ipv4"] ? "local_ipv4" : "public_ipv4"
+ip_type = node["undef-sensu"]["use_local_ipv4"] ? "local_ipv4" : "public_ipv4"
 
 case
 when Chef::Config[:solo]
@@ -28,7 +28,7 @@ when Chef::Config[:solo]
   graphite_port ||= 2003
 when graphite_address.nil?
   graphite_node = case
-  when node["monitor"]["environment_aware_search"]
+  when node["undef-sensu"]["environment_aware_search"]
     search(:node, "chef_environment:#{node.chef_environment} AND recipes:graphite").first
   else
     search(:node, "recipes:graphite").first
@@ -53,8 +53,8 @@ sensu_handler "graphite" do
   mutator "only_check_output"
 end
 
-if node["monitor"]["use_nagios_plugins"]
-  include_recipe "monitor::_nagios_perfdata"
+if node["undef-sensu"]["use_nagios_plugins"]
+  include_recipe "undef-sensu::_nagios_perfdata"
 
   sensu_handler "graphite_perfdata" do
     type "tcp"

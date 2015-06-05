@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe "monitor::_rabbitmq"
+include_recipe "undef-sensu::_rabbitmq"
 
 sensu_check "rabbitmq_overview_metrics" do
   type "metric"
