@@ -17,13 +17,13 @@
 # limitations under the License.
 #
 
-include_recipe "monitor::_master_search"
+include_recipe "undef-sensu::_master_search"
 
 include_recipe "sensu::default"
 
-ip_type = node["monitor"]["use_local_ipv4"] ? "local_ipv4" : "public_ipv4"
+ip_type = node["undef-sensu"]["use_local_ipv4"] ? "local_ipv4" : "public_ipv4"
 
-client_attributes = node["monitor"]["additional_client_attributes"].to_hash
+client_attributes = node["undef-sensu"]["additional_client_attributes"].to_hash
 
 sensu_client node.name do
   if node.has_key?("cloud")
@@ -50,16 +50,16 @@ end
   end
 end
 
-if node["monitor"]["use_nagios_plugins"]
-  include_recipe "monitor::_nagios_plugins"
+if node["undef-sensu"]["use_nagios_plugins"]
+  include_recipe "undef-sensu::_nagios_plugins"
 end
 
-if node["monitor"]["use_system_profile"]
-  include_recipe "monitor::_system_profile"
+if node["undef-sensu"]["use_system_profile"]
+  include_recipe "undef-sensu::_system_profile"
 end
 
-if node["monitor"]["use_statsd_input"]
-  include_recipe "monitor::_statsd"
+if node["undef-sensu"]["use_statsd_input"]
+  include_recipe "undef-sensu::_statsd"
 end
 
 include_recipe "sensu::client_service"
