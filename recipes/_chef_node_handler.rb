@@ -30,10 +30,10 @@ cookbook_file handler_path do
   mode 0755
 end
 
-node.override['monitor']['sudo_commands'] =
-  node['monitor']['sudo_commands'] + [handler_path]
+node.override['undef-sensu']['sudo_commands'] =
+  node['undef-sensu']['sudo_commands'] + [handler_path]
 
-include_recipe "monitor::_sudo"
+include_recipe "undef-sensu::_sudo"
 
 sensu_snippet "chef" do
   content(
@@ -44,7 +44,7 @@ sensu_snippet "chef" do
   )
 end
 
-include_recipe "monitor::_filters"
+include_recipe "undef-sensu::_filters"
 
 sensu_handler "chef_node" do
   type "pipe"
