@@ -1,4 +1,4 @@
-default["monitor"]["pagerduty_api_key"] = ""
+default["undef-sensu"]["pagerduty_api_key"] = ""
 
-default["monitor"]["graphite_address"] = nil
-default["monitor"]["graphite_port"] = nil
+default["undef-sensu"]["graphite_address"] = nil
+default["undef-sensu"]["graphite_port"] = nil
