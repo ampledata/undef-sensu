@@ -4,7 +4,7 @@ maintainer_email "gba@gregalbrecht.com"
 license          "Apache License, Version 2.0"
 description      "A cookbook for monitoring services, using Sensu, a monitoring framework."
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "1.0.2"
+version          "1.0.3"
 
 %w[
   ubuntu

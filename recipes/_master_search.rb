@@ -30,9 +30,9 @@ when master_address.nil?
   else
     master_node = case
     when node["undef-sensu"]["environment_aware_search"]
-      search(:node, "chef_environment:#{node.chef_environment} AND recipes:monitor\\:\\:master").first
+      search(:node, "chef_environment:#{node.chef_environment} AND recipes:undef-sensu\\:\\:master").first
     else
-      search(:node, "recipes:monitor\\:\\:master").first
+      search(:node, "recipes:undef-sensu\\:\\:master").first
     end
 
     master_address = case
